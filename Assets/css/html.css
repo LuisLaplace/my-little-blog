@@ -1,52 +1,125 @@
 * {
-    box-sizing: border-box;
+    transition: all .2s;
 }
+
+body {
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.5s, color 0.5s
+}
+
+.dark-theme {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
 
 .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    width: 25%;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: outset;
 }
 
-.sidebar a.active {
-    background-color: #04AA6D;
-    color: white;
+.sidebar button {
+    margin-top: 10px;
 }
 
-.sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
-
-div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-}
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    .sidebar a {
-        float: left;
-    }
-
-    div.content {
-        margin-left: 0;
+        width: initial;
     }
 }
 
-@media screen and (max-width: 400px) {
-    .sidebar a {
-        text-align: center;
-        float: none;
+.hero img {
+    position: relative;
+    float: right;
+    bottom: 24rem;
+    mix-blend-mode: darken;
+}
+
+@media screen and (max-width: 600px) {
+    .hero img {
+      position: static;
+      float: none;
     }
+}
+
+.container {
+    bottom: 62px;
+    width: 46px;
+    height: 46px;
+    box-sizing: border-box;
+    padding: 12px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        bottom: initial;
+    }
+}
+
+.sun {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.6) rotate(0deg);
+    transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
+
+    /*  white transparent for Safari  */
+    background: radial-gradient(circle,
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0) 50%,
+            #ddda11 50%);
+
+}
+
+.sun:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle,
+            #ddda11 30%,
+            rgba(0, 0, 0, 0) 31%,
+            rgba(0, 0, 0, 0) 50%,
+            #ddda11 50%);
+    transform: rotate(45deg);
+}
+
+.sun.visible {
+    pointer-events: auto;
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+    transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
+}
+
+.moon {
+    width: 50%;
+    height: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 18.75%;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    box-shadow: 9px 3px 0px 0px #f0f0f0;
+    opacity: 0;
+    transform: scale(0.3) rotate(65deg);
+    transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
+}
+
+.moon.visible {
+    pointer-events: auto;
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    transition: transform 0.3s ease-in, opacity 0.2s ease-in 0.1s;
 }

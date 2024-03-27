@@ -4,34 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogger</title>
+    <title>Solair's Blogger</title>
     <link rel="stylesheet" href="./Assets/css/html.css">
 </head>
 
 <body>
-    <div class="sidebar">
-        <form action="">
-            <h4>Username</h4>
-            <input type="text">
+    <header>
+    </header>
+    <button onclick="toggleTheme()" class="container light-theme">
+        <div class="sun visible"></div>
+
+        <div class="moon dark-theme">
+        </div>
+    </button>
+    <hr>
+    <hr>
+
+    <aside class="sidebar">
+        <form action="file:///C:/Users/lap28/bootcamp/challenges/week-4-blog/my-little-blog/blog.html" method="post"
+            id="blog-post">
+            <label for="user">User name</label>
+            <input type="text" name="User" id="user"><br>
+            <label for="title">Blog Title</label>
+            <input type="text" name="title" id="title"><br>
+            <label for="text">Content</label>
+            <textarea name="text" id="text" cols="30" rows="10"></textarea><br>
+            <button id="save">Submit</button>
         </form>
-        <form action="">
-            <h4>Title</h4>
-            <input type="text">
-        </form>
-        <Form>
-            <h4>Content</h4>
-            <input type="text">
-        </Form>
-        <a href="file:///C:/Users/lap28/bootcamp/challenges/week-4-blog/my-little-blog/blog.html">
-            <button>Submit</button>
-        </a>
+
+    </aside>
+
+    <div class="hero">
+        <img src="https://media1.tenor.com/m/z78cP4-eOUAAAAAC/praise-the.gif" alt="Praise the Sun">
     </div>
 
-    <div class="content">
-        <img src="https://media1.tenor.com/m/z78cP4-eOUAAAAAC/praise-the.gif" class=gif alt="Praise the Sun">
-    </div>
-
-
+    <footer></footer>
+    
     <script src="./Assets/js/html.js"></script>
 </body>
 

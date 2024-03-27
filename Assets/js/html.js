@@ -21,7 +21,7 @@ header.appendChild(h1El)
 function toggleTheme() {
     const button = document.querySelector('.container');
     const body = document.body;
-    const aside = document.querySelector('aside'); 
+    const aside = document.querySelector('aside');
 
     button.classList.toggle('light-theme');
     button.classList.toggle('dark-theme');
@@ -46,8 +46,27 @@ button.addEventListener('click', () => {
     moon.classList.toggle('visible')
 })
 
-const post = document.getElementById(`blog-post`)
-post.setAttribute(`style`, `display: flex; flex-direction: column;`);
+const post = document.getElementById('post');
+post.setAttribute('style', 'display: flex; flex-direction: column;');
+
+function postBlog(event) {
+    let user = document.getElementById('user').value;
+    let title = document.getElementById('title').value;
+    let text = document.getElementById('text').value;
+
+    if (user === '' || title === '' || text === '') {
+        alert('Please fill out all fields before posting.');
+        event.preventDefault(); // Prevent form submission
+    } else {
+        const post = { user, title, text };
+        localStorage.setItem('post', JSON.stringify(post));
+    }
+}
+
+// Add event listener to the form
+document.getElementById('post').addEventListener('submit', postBlog);
+// Add event listener to the form
+// document.getElementById('post').addEventListener('submit', postBlog);
 
 const textEl = document.getElementById(`text`)
 textEl.setAttribute(`style`, `height: 200px;`)

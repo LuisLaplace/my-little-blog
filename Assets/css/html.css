@@ -40,8 +40,8 @@ body {
 
 @media screen and (max-width: 600px) {
     .hero img {
-      position: static;
-      float: none;
+        position: static;
+        float: none;
     }
 }
 

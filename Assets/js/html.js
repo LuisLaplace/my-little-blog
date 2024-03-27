@@ -63,10 +63,7 @@ function postBlog(event) {
     }
 }
 
-// Add event listener to the form
 document.getElementById('post').addEventListener('submit', postBlog);
-// Add event listener to the form
-// document.getElementById('post').addEventListener('submit', postBlog);
 
 const textEl = document.getElementById(`text`)
 textEl.setAttribute(`style`, `height: 200px;`)

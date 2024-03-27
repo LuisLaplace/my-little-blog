@@ -7,53 +7,47 @@
     <link rel="stylesheet" href="./Assets/css/blog.css">
 </head>
 <body>
-    <div class="header">
-        <h2>Blog Name</h2>
-      </div>
-      
-      <div class="row">
-        <div class="leftcolumn">
-          <div class="card">
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Dec 7, 2017</h5>
-            <p id="inser"></p>
-            <p>Some text..</p>
-          </div>
-          <div class="card">
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Sep 2, 2017</h5>
-            <div class="fakeimg" style="height:200px;">Image</div>
-            <p>Some text..</p>
-          </div>
-        </div>
-        <div class="rightcolumn">
-          <div class="card">
-            <h2>About Me</h2>
-            <div class="fakeimg" style="height:100px;">Image</div>
-            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-          </div>
-          <div class="card">
-            <h3>Popular Post</h3>
-            <div class="fakeimg">Image</div><br>
-            <div class="fakeimg">Image</div><br>
-            <div class="fakeimg">Image</div>
-          </div>
-          <div class="card">
-            <h3>Follow Me</h3>
-            <p>Some text..</p>
-          </div>
-        </div>
-      </div>
+  <header></header>
+  <button onclick="toggleTheme()" class="container light-theme">
+    <div class="sun visible"></div>
 
-      <form action="">
-        <a href="file:///C:/Users/lap28/bootcamp/challenges/week-4-blog/my-little-blog/index.html">
-          <button type="button">Return</button>
-        </a>
-      </form>
-      
-      <div class="footer">
-        <h2>Footer</h2>
-      </div>
+    <div class="moon dark-theme">
+    </div>
+</button>
+  <form action="">
+    <a href="./index.html">
+      <button type="button" class="backBtn">⬅️ Back</button>
+    </a>
+  </form>
+
+  <hr class="line1">
+  <hr class="line2">
+
+<article class="boxes">
+  <h3 id="blog__titles">Title:</h3>
+  <hr>
+  <p id="blog__texts">Content:</p>
+  <h6 id="blog__user">Posted by:</h6>
+</article>
+<article class="boxes">
+  <h3 id="blog__titles">Title:</h3>
+  <hr>
+  <p id="blog__texts">Content:</p>
+  <h6 id="blog__user">Posted by:</h6>
+</article>
+<article class="boxes">
+  <h3 id="blog__titles">Title:</h3>
+  <hr>
+  <p id="blog__texts">Content:</p>
+  <h6 id="blog__user">Posted by:</h6>
+</article>
+<article class="boxes">
+  <h3 id="blog__titles">Title:</h3>
+  <hr>
+  <p id="blog__texts">Content:</p>
+  <h6 id="blog__user">Posted by:</h6>
+</article>
+<footer></footer>
 
       <script src="./Assets/js/blog.js"></script>
 </body>

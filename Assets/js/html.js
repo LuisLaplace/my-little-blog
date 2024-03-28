@@ -1,4 +1,3 @@
-const body = document.body;
 const sun = document.querySelector(".sun");
 const moon = document.querySelector(".moon");
 const button = document.querySelector(".container");
@@ -7,13 +6,9 @@ const header = document.querySelector(`header`)
 const image = document.querySelector(`img`)
 const footer = document.querySelector(`footer`)
 
-function postMe() {
-    const post = document.getElementById(`save`).value
-    sessionStorage.setItem(`user`, `title`, `text`);
-}
 
 const h1El = document.createElement(`h1`)
-h1El.textContent = `Praise The Sun`
+h1El.textContent = `PRAISE THE SUN`
 h1El.setAttribute(`style`, `display: flex; justify-content: center;`)
 header.appendChild(h1El)
 
@@ -49,6 +44,7 @@ button.addEventListener('click', () => {
 const post = document.getElementById('post');
 post.setAttribute('style', 'display: flex; flex-direction: column;');
 
+
 function postBlog(event) {
     let user = document.getElementById('user').value;
     let title = document.getElementById('title').value;
@@ -56,14 +52,23 @@ function postBlog(event) {
 
     if (user === '' || title === '' || text === '') {
         alert('Please fill out all fields before posting.');
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
+        console.log("Error entry");
     } else {
-        const post = { user, title, text };
-        localStorage.setItem('post', JSON.stringify(post));
+        let newPost = { user: user, title: title, text: text };
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+        let isDuplicate = posts.some(post => post.user === user && post.title === title && post.text === text);
+
+        if (isDuplicate) {
+            alert('This post already exists.');
+        } else {
+            posts.push(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+        }
     }
 }
 
-document.getElementById('post').addEventListener('submit', postBlog);
 
 const textEl = document.getElementById(`text`)
 textEl.setAttribute(`style`, `height: 200px;`)

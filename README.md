@@ -1,128 +1,97 @@
 # 04 Web APIs: Personal Blog
+Building a blog site that contains a landing page
 
-## Your Task
+## Table of Content
+1. blog.html contains the blog page
+2. index.html contains the landing page 
+3. README.md is the document that you are reading right now
+4. Assets folder contains the css and js documents for each of the blog and index html(s)
 
-In this challenge, you'll create a two-page website where users will input and view blog posts. It includes building a content form, dynamically rendering blog posts, and implementing a light/dark mode toggle. As you code, you'll gain practical JavaScript experience, explore the Document Object Model's power, and set the stage for more advanced tasks.
+## Header
+The h1 is made in JavaScript using: 
+```
+{
+const x = document.createElement("h1")
+x.textContent = "text here"
+x.setAttribute('style', enter style here)
+header.appendChild(x)
+}
+```
+In the header there is a theme-switcher that on both pages but only the blog page has a back.  The theme-switcher is styled to look like a sun when in light-them(default) and a moon when in dark-theme. When the theme switches the content of of the body and all other elements that were coded will contain the class="dark-theme" and will contain the light-theme(default).  The back button will direct you back to the landing page.
 
-## User Story
+## Aside
+There is an aside within the index.html that contains the label and input for a blog entry.  It has an entry for username, blog title, and blog content.  When you click on the submit button it is stored locally using this:
+```
+{function postBlog(event) {
+    let user = document.getElementById('user').value;
+    let title = document.getElementById('title').value;
+    let text = document.getElementById('text').value;
 
-```md
-AS A marketing student,
-I WANT a personal blog
-SO THAT I can showcase my thoughts and experiences.
+    if (user === '' || title === '' || text === '') {
+        alert('Please fill out all fields before posting.');
+        event.preventDefault();
+        console.log("Error entry");
+    } else {
+        let newPost = { user: user, title: title, text: text };
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+        let isDuplicate = posts.some(post => post.user === user && post.title === title && post.text === text);
+
+        if (isDuplicate) {
+            alert('This post already exists.');
+        } else {
+            posts.push(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+        }
+    }
+}}
+```
+there is an alert if any of the values are empty and if there is a duplicate when you try to submit a document.
+
+
+## Image
+I added a GIF of the character Solair from the game "Dark Souls".  It has a white backdrop which would pop out if left alone.  Using `{mix-blend-mode: darken}` in the css file, will make the backdrop blend easily with the rest of the page.  When the dark-theme is active, solair dissapears.  But worry not! He comes back when the sun is visible.
+
+
+## Main
+In the localStorage you will be able to see the entries under the array. It is empty when you clear the localStorage but it will boxes when you submit entries in the landing page.  The entries are generated as a list entries but they are styled to look like different.
+```
+{const storedPost = JSON.parse(localStorage.getItem('posts'));
+
+if (storedPost) {
+    const postList = document.getElementById('postList');
+
+    storedPost.forEach(post => {
+        const listItem = document.createElement('li');
+        listItem.setAttribute('style', 'list-style: none; position: relative; border: 5px solid #ccc; padding: 10px; margin-bottom: 10px;');
+
+
+        const h3El = document.createElement('h3');
+        h3El.textContent = `Title: ${post.title}`;
+
+        const pEl = document.createElement('p');
+        pEl.textContent = post.text;
+
+        const h6El = document.createElement('h6');
+        h6El.textContent = `Posted by: ${post.user}`;
+
+
+        listItem.appendChild(h3El);
+        listItem.appendChild(pEl);
+        listItem.appendChild(h6El);
+
+        postList.appendChild(listItem);
+    });
+}}
 ```
 
-## Acceptance Criteria
+## Footer
+In the footer you will find a little text blurb by me along with a link to the portfolio from previous work
 
-```md
-GIVEN a personal blog
-WHEN I load the app,
-THEN I am presented with the landing page containing a form with labels and inputs for username, blog title, and blog content.
-WHEN I submit the form,
-THEN blog post data is stored to localStorage.
-WHEN the form submits,
-THEN I am redirected to the posts page.
-WHEN I enter try to submit a form without a username, title, or content,
-THEN I am presented with a message that prompts me to complete the form.
-WHEN I view the posts page,
-THEN I am presented with a header, with a light mode/dark mode toggle, and a "Back" button.
-WHEN I click the light mode/dark mode toggle,
-THEN the page content's styles update to reflect the selection.
-WHEN I click the "Back" button,
-THEN I am redirected back to the landing page where I can input more blog entries.
-WHEN I view the main content,
-THEN I am presented with a list of blog posts that are pulled from localStorage.
-WHEN I view localStorage,
-THEN I am presented with a JSON array of blog post objects, each including the post author's username, title of the post, and post's content.
-WHEN I take a closer look at a single blog entry in the list,
-THEN I can see the title, the content, and the author of the post.
-WHEN I view the footer,
-THEN I am presented with a link to the developer's portfolio.
-```
 
-## Getting Started
-
-Your file structure should look like the following:
-
-```md
-my-blog
-├── assets
-│   ├── css
-│   │   ├── blog.css
-│   │   ├── form.css
-│   │   └── styles.css
-│   └── js
-│       ├── blog.js
-│       ├── form.js
-│       └── logic.js
-├── index.html
-├── blog.html
-└── README.md
-```
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![A user adds a blog through a form, then the post appears on the following page.](./Assets/100-web-apis-challenge-demo.gif)
-
-## Grading Requirements
-
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
-
+### Sources
+![](https://media1.tenor.com/m/z78cP4-eOUAAAAAC/praise-the.gif)
+![](./Assets/Images/landingday.png)
+![](./Assets/Images/landingnight.png)
+![](./Assets/Images/blogday.png)
+![](./Assets/Images/blognight.png)
